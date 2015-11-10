@@ -41,8 +41,9 @@ parser.add_argument("--font-size", default=None,
 
 parser.add_argument("--output",
     dest="output", type=expand_path,
-    help="""Path to output generated image. If output is omitted, a preview will be shown. Note that
-    the preview mechanism may not support an alpha channel.""")
+    help="""Path to output generated image. The output image's format is determined by the
+    file extension. If output is omitted, a preview will be shown. Note that the preview
+    mechanism may not support an alpha channel.""")
 
 parser.add_argument("--size", default=128,
     dest="size", type=int,
