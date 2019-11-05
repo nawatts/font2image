@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import argparse
-import os
-import sys
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -16,13 +14,10 @@ def color_hex_string(hex_string):
 
     return tuple([int(hex_string[i:i+2], 16) for i in range(0, len(hex_string), 2)])
 
-def expand_path(path):
-    return os.path.realpath(os.path.expandvars(os.path.expanduser(path)))
 
 parser = argparse.ArgumentParser(description="Generate an image from a character in a font.")
 
-parser.add_argument("font_file", type=expand_path,
-    help="The font file to pull icon from.")
+parser.add_argument("font_file", help="The font file to pull icon from.")
 
 parser.add_argument("glyph", type=str,
     help="The Unicode code of the character to render. Ex: f0f3.")
@@ -40,7 +35,7 @@ parser.add_argument("--font-size", default=None,
     help="Size of character to draw in pixels. Defaults to half of image size.")
 
 parser.add_argument("--output",
-    dest="output", type=expand_path,
+    dest="output",
     help="""Path to output generated image. The output image's format is determined by the
     file extension. If output is omitted, a preview will be shown. Note that the preview
     mechanism may not support an alpha channel.""")
@@ -57,7 +52,7 @@ if not args.font_size:
 
 glyph = bytes("\\u" + args.glyph, "ascii").decode("unicode-escape")
 
-font = ImageFont.truetype(os.path.realpath(args.font_file), size=args.font_size)
+font = ImageFont.truetype(args.font_file, size=args.font_size)
 img = Image.new("RGBA", (args.size, args.size), args.background_color)
 draw = ImageDraw.Draw(img)
 
@@ -68,6 +63,6 @@ y = round((args.size - glyph_size[1]) / 2.0)
 draw.text((x, y), glyph, fill=args.fill_color, font=font)
 
 if args.output:
-    img.save(os.path.realpath(args.output))
+    img.save(args.output)
 else:
     img.show()
