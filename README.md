@@ -16,9 +16,9 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   --background-color BACKGROUND_COLOR
-                        Background color of image as RGB hex string.
+                        Background color of image as RGB hex string. Defaults to #ffffff.
   --fill-color FILL_COLOR
-                        Color of character as RGB hex string.
+                        Color of character as RGB hex string. Defaults to #000000.
   --font-size FONT_SIZE
                         Size of character to draw in pixels. Defaults to half
                         of image size.

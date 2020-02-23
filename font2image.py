@@ -53,11 +53,11 @@ def main():
 
     parser.add_argument("--background-color", default="ffffff",
         dest="background_color", type=color_hex_string,
-        help="Background color of image as RGB hex string.")
+        help="Background color of image as RGB hex string. Defaults to #%(default)s.")
 
     parser.add_argument("--fill-color", default="000000",
         dest="fill_color", type=color_hex_string,
-        help="Color of character as RGB hex string.")
+        help="Color of character as RGB hex string. Defaults to #%(default)s.")
 
     parser.add_argument("--font-size", default=None,
         dest="font_size", type=int,
